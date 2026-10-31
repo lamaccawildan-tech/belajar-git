@@ -1,0 +1,100 @@
+/* Obsidian & Parchment Design System - Custom Styling */
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #131315;
+    color: #e5e1e4;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #131315;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2c;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Luxury Editorial Glow Effects */
+.gold-glow {
+  box-shadow: 0 4px 24px -2px rgba(233, 195, 73, 0.25);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 8px 36px -4px rgba(233, 195, 73, 0.35);
+}
+
+.subtle-border {
+  border: 1px solid rgba(235, 229, 216, 0.1);
+}
+
+.subtle-border-hover:hover {
+  border-color: rgba(233, 195, 73, 0.45);
+}
+
+/* Noise overlay effect */
+.bg-noise {
+  background-image: radial-gradient(rgba(235, 229, 216, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Font Smoothing & Utilites */
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Active navigation state */
+.nav-tab-active {
+  color: #e9c349 !important;
+  background-color: rgba(53, 52, 57, 0.5) !important;
+  border-top: 2px solid #e9c349;
+}
+
+/* Card hover animation */
+.card-hover-effect {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  background-color: #262528;
+}
+
+/* Pulse animation */
+@keyframes goldPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+.animate-gold-pulse {
+  animation: goldPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
