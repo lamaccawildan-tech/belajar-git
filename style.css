@@ -1,6 +1,7 @@
-/* Obsidian & Parchment Design System - Custom Styling */
 @layer base {
-  html, body {
+
+  html,
+  body {
     margin: 0;
     padding: 0;
     background-color: #131315;
@@ -29,13 +30,16 @@
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #131315;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #2a2a2c;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #d4af37;
 }
@@ -83,6 +87,7 @@
 .card-hover-effect {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .card-hover-effect:hover {
   transform: translateY(-2px);
   background-color: #262528;
@@ -90,11 +95,19 @@
 
 /* Pulse animation */
 @keyframes goldPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.9); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
 }
 
 .animate-gold-pulse {
   animation: goldPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
