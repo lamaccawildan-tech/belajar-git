@@ -1,5 +1,5 @@
 /**
- * Obsidian & Parchment Portfolio - Interactive Scripts
+ * Obsidian & Parchment Portfolio - Script Interaktif (Bahasa Indonesia)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. Smooth Scrolling for Navigation Links
+ * 1. Smooth Scrolling untuk Navigasi Internal
  */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -31,7 +31,7 @@ function initSmoothScroll() {
           behavior: 'smooth'
         });
 
-        // Update active tab in bottom bar
+        // Perbarui tab aktif di navigasi bawah
         updateActiveTabByHref(targetId);
       }
     });
@@ -39,7 +39,7 @@ function initSmoothScroll() {
 }
 
 /**
- * 2. ScrollSpy for Bottom Navigation Tabs
+ * 2. ScrollSpy untuk Tab Navigasi Bawah
  */
 function initScrollSpy() {
   const sections = [
@@ -61,8 +61,9 @@ function initScrollSpy() {
         const activeSection = sections.find(s => s.id === entry.target.id);
         if (activeSection && activeSection.tab) {
           clearActiveTabs();
-          activeSection.tab.classList.add('text-secondary', 'bg-surface-container-highest/40', 'nav-tab-active');
-          activeSection.tab.classList.remove('text-on-surface-variant');
+          activeSection.tab.classList.add('text-[#e9c349]', 'bg-[#353437]/40', 'nav-tab-active');
+          activeSection.tab.classList.remove('text-[#cbc6bc]');
+          activeSection.tab.setAttribute('aria-current', 'page');
         }
       }
     });
@@ -77,8 +78,8 @@ function initScrollSpy() {
 function clearActiveTabs() {
   const tabs = document.querySelectorAll('nav a');
   tabs.forEach(tab => {
-    tab.classList.remove('text-secondary', 'bg-surface-container-highest/40', 'nav-tab-active');
-    tab.classList.add('text-on-surface-variant');
+    tab.classList.remove('text-[#e9c349]', 'bg-[#353437]/40', 'nav-tab-active');
+    tab.classList.add('text-[#cbc6bc]');
     tab.removeAttribute('aria-current');
   });
 }
@@ -87,18 +88,18 @@ function updateActiveTabByHref(href) {
   const tab = document.querySelector(`nav a[href="${href}"]`);
   if (tab) {
     clearActiveTabs();
-    tab.classList.add('text-secondary', 'bg-surface-container-highest/40', 'nav-tab-active');
-    tab.classList.remove('text-on-surface-variant');
+    tab.classList.add('text-[#e9c349]', 'bg-[#353437]/40', 'nav-tab-active');
+    tab.classList.remove('text-[#cbc6bc]');
     tab.setAttribute('aria-current', 'page');
   }
 }
 
 /**
- * 3. Animated Stats Counter
+ * 3. Animasi Angka Statistik (Counter)
  */
 function initStatsCounter() {
   const statsSection = document.getElementById('stats-strip');
-  if (!statsSection) return;
+  if (!statsSection || !('IntersectionObserver' in window)) return;
 
   let hasAnimated = false;
 
@@ -106,12 +107,12 @@ function initStatsCounter() {
     entries.forEach(entry => {
       if (entry.isIntersecting && !hasAnimated) {
         hasAnimated = true;
-        animateValue('stat-rev', 0, 4.2, 1200, '$', 'M+');
+        animateValue('stat-rev', 0, 4.2, 1200, '$', 'Jt+');
         animateValue('stat-sla', 85.0, 99.8, 1200, '', '%');
         animateValue('stat-snapshots', 0, 120, 1200, '', '+');
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
   observer.observe(statsSection);
 }
@@ -126,7 +127,6 @@ function animateValue(id, start, end, duration, prefix = '', suffix = '') {
   const step = (timestamp) => {
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    // Ease-out expo
     const easeProgress = 1 - Math.pow(1 - progress, 3);
     const current = start + (end - start) * easeProgress;
 
@@ -143,7 +143,7 @@ function animateValue(id, start, end, duration, prefix = '', suffix = '') {
 }
 
 /**
- * 4. Consultation Booking Form Handling
+ * 4. Pengiriman Formulir Konsultasi
  */
 function initConsultationForm() {
   const form = document.getElementById('consultForm');
@@ -160,12 +160,12 @@ function initConsultationForm() {
       return;
     }
 
-    // Button loading state
+    // Status loading pada tombol
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <span class="inline-block animate-spin mr-2">⚙️</span>
-        <span>Securing Priority Slot...</span>
+        <span>Mengamankan Slot Prioritas...</span>
       `;
     }
 
@@ -174,20 +174,20 @@ function initConsultationForm() {
       successBox.classList.remove('hidden');
       successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      // Reset button
+      // Reset tombol
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
           <span class="material-symbols-outlined text-[18px]">calendar_today</span>
-          <span>Confirm & Select Time Slot</span>
+          <span>Konfirmasi &amp; Pilih Jadwal</span>
         `;
       }
-    }, 800);
+    }, 600);
   });
 }
 
 /**
- * 5. Device Viewport Mode Toggle (Mobile Canvas vs Responsive Desktop)
+ * 5. Pengalih Tampilan (Frame Mobile vs Desktop Responsif)
  */
 function initViewToggle() {
   const toggleBtn = document.getElementById('viewModeToggle');
@@ -201,19 +201,18 @@ function initViewToggle() {
     isMobileFrame = !isMobileFrame;
     if (isMobileFrame) {
       appContainer.classList.remove('max-w-2xl', 'lg:max-w-3xl');
-      appContainer.classList.add('max-w-[420px]', 'border-x', 'border-outline-variant/30', 'shadow-[0_0_50px_rgba(0,0,0,0.8)]');
+      appContainer.classList.add('max-w-[420px]', 'border-x', 'border-[#49473f]/30', 'shadow-[0_0_50px_rgba(0,0,0,0.8)]');
       toggleBtn.innerHTML = `
         <span class="material-symbols-outlined text-[16px]">desktop_windows</span>
-        <span class="hidden sm:inline">Desktop View</span>
+        <span>Tampilan Desktop</span>
       `;
     } else {
       appContainer.classList.add('max-w-2xl', 'lg:max-w-3xl');
-      appContainer.classList.remove('max-w-[420px]', 'border-x', 'border-outline-variant/30', 'shadow-[0_0_50px_rgba(0,0,0,0.8)]');
+      appContainer.classList.remove('max-w-[420px]', 'border-x', 'border-[#49473f]/30', 'shadow-[0_0_50px_rgba(0,0,0,0.8)]');
       toggleBtn.innerHTML = `
         <span class="material-symbols-outlined text-[16px]">smartphone</span>
-        <span class="hidden sm:inline">Mobile Frame</span>
+        <span>Tampilan HP</span>
       `;
     }
   });
 }
-
